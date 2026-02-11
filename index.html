@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>منصة يوم التأسيس</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #F4EADA;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  header {
+    background: #6B4E45;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  header p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  header button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #DEC9B2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+  }
+
+  nav {
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    padding: 50px;
+    justify-content: space-between;
+    align-items: center;
+    background: #F4EADA;
+    padding: 10px 20px;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    flex-wrap: wrap;
+  }
+
+  nav img { height: 40px; }
+  nav .links { display: flex; gap: 15px; flex-wrap: wrap; }
+  nav .links a { color: white; text-decoration: none; font-weight: bold; }
+
+#container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    height: calc(100vh - 70px); 
+    margin-top: 70px; 
+    padding: 0 20px; 
+}
+
+#chat-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 80%;  
+    max-width: 900px; 
+    min-height: 500px; 
+}
+
+  #header {
+    background: #6B4E45;
+    color: white;
+    padding: 15px;
+    text-align: center;
+  }
+
+  #messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 300px;
+    background: #fff8f0;
+  }
+
+  .bubble {
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+  }
+
+  .user { background: #6B4E45; color: white; align-self: flex-end; font-size: 24px; }
+  .bot { background: #DEC9B2; 
+    color: black; align-self: flex-start; 
+  font-size: 24px;}
+
+  #options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    justify-content: center;
+    background: #f4eada;
+     font-size: 24px;
+  }
+
+  #options button {
+    padding: 14px 12px;
+     font-size: 24px;
+    background: #6B4E45;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  #options button:hover { background: #5a3b36; }
+
+  #image-section {
+    width: 350px;
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  #image-section img { width: 100%; height: 100%; object-fit: cover; }
+
+  footer {
+    background: #6B4E45;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+  }
+
+  @media (max-width: 768px) {
+    #container {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+      justify-items: center;
+    }
+    #image-section, #chat-container { width: 90%; }
+  }
+</style>
+</head>
+<body>
+   <!--<nav>
+  img src="./logo.jpg" alt="Logo">
+  <div class="links">
+    <a href="#container">الرئيسية</a>
+    <a href="#chat-container">الدردشة</a>
+    <a href="#footer">تواصل</a>
+  </div>
+</nav> -->
+
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 20px; background: #6B4E45; color: #fff; flex-wrap: wrap; margin-top: 60px;">
+  
+  <div id="image-section">
+    <img src="./robot-saud.png" alt="بوت يوم التأسيس">
+  </div>
+
+  <div style="flex: 1; min-width: 250px; text-align: right; padding: 10px;">
+    <h1 style="font-size: 28px; margin-bottom: 15px;">
+      مرحباً! أنا سعود مساعدك الافتراضي
+    </h1>
+    <p style="font-size: 20px; line-height: 1.5;">
+
+منصة تفاعلية عن يوم التأسيس يجيب فيها المساعد"سعود" على أسئلتك بسرعة وبسهولة.
+    </p>
+    <button onclick="scrollToChat()" style="padding: 12px 20px; font-size: 16px; background: #Fff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 15px;">
+      انتقل الآن
+    </button>
+  </div>
+
+</header>
+
+<div id="container">
+
+
+  <div id="chat-container">
+    <div id="header">
+      <img src="./logo.jpg" alt="بوت يوم التأسيس" style="width: 200px; height: auto;border-radius: 5px;">
+    </div>
+    <div id="messages"></div>
+    <div id="options">
+      <button id="btn0" onclick="askBot(0)">متى يوم التأسيس؟</button>
+      <button id="btn1" onclick="askBot(1)">من أسس الدولة السعودية الأولى؟</button>
+      <button id="btn2" onclick="askBot(2)">متى تم توحيد المملكة العربية السعودية؟</button>
+      <button id="btn3" onclick="askBot(3)">من هو مؤسس المملكة العربية السعودية؟</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+<footer style="background: #6B4E45; color: white; text-align: center; padding: 15px; margin-top: auto;">
+  <p>تم تطويره بواسطة فتون الزنان</p>
+  <p>جميع الحقوق محفوظة لنادي الذكاء الاصطناعي © 2026</p>
+</footer>
+</footer>
+
+<script>
+const messagesDiv = document.getElementById("messages");
+const buttons = [
+  document.getElementById("btn0"),
+  document.getElementById("btn1"),
+  document.getElementById("btn2"),
+  document.getElementById("btn3")
+];
+
+const knowledgeBaseAR = [
+  "يوم التأسيس السعودي هو 22 فبراير 1727.",
+  "أسس الدولة السعودية الأولى الإمام محمد بن سعود.",
+  "تم توحيد المملكة العربية السعودية على يد الملك عبدالعزيز آل سعود في 23 سبتمبر 1932.",
+  "المؤسس هو الملك عبدالعزيز آل سعود."
+];
+
+const questionsAR = [
+  "متى يوم التأسيس؟",
+  "من أسس الدولة السعودية الأولى؟",
+  "متى تم توحيد المملكة؟",
+  "من هو المؤسس؟"
+];
+
+function addMessage(text, cls) {
+  const div = document.createElement("div");
+  div.className = "bubble " + cls;
+  div.innerText = text;
+  messagesDiv.appendChild(div);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+function askBot(index) {
+  addMessage("أنت: " + questionsAR[index], "user");
+  setTimeout(() => {
+    addMessage("سعود: " + knowledgeBaseAR[index], "bot");
+  }, 500);
+}
+
+// زر السكّرول
+function scrollToChat() {
+  document.getElementById("chat-container").scrollIntoView({ behavior: "smooth" });
+}
+
+window.onload = () => {
+  setTimeout(() => {
+    addMessage("سعود: أنا سعود مساعدك الافتراضي. اختر السؤال الذي تريد الإجابة عنه.", "bot");
+  }, 500);
+};
+</script>
+</body>
+</html>
